@@ -1,0 +1,72 @@
+
+# Shell project / VPS setup .gitignore
+
+# Editor temporary files
+*~
+*.swp
+*.swo
+*.swx
+*.un~
+*.bak
+
+# Logs and runtime files
+*.log
+*.pid
+*.pid.lock
+*.tmp
+
+# Environment and secret files
+.env
+.env.*
+*.key
+*.pem
+*.crt
+secrets.json
+
+# SSH keys
+id_rsa
+id_rsa.pub
+id_dsa
+id_ecdsa
+id_ed25519
+*.pub
+
+# Build artifacts and binaries
+bin/
+build/
+dist/
+obj/
+*.o
+*.so
+*.exe
+*.out
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Shell history/session files
+.history
+.bash_history
+.zsh_history
+
+# Environment variables with secrets
+conf/**/.env.local
+conf/**/.env.*.local
+**/.env.local
+
+# Database dumps (large & sensitive - contains production data)
+conf/**/*.dump
+conf/**/*.sql
+*.dump
+*.sql
+db/
+
+# Misc
+/tmp/
