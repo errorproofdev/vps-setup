@@ -62,6 +62,138 @@
    - Post-push verification
    - Security maintenance schedule
 
+### Node-Steelgem Server Documentation (NEW)
+
+1. **NODE-STEELGEM-SETUP.md** - Complete VPS setup guide
+   - Server overview and architecture
+   - Application portfolio (3 NextJS apps)
+   - Multi-architecture support (Pages + App Router)
+   - Resource optimization strategies
+   - Quick start deployment
+   - Directory structure
+   - PM2 cluster configuration
+   - NGINX configuration for all 3 sites
+   - SSL/TLS setup with Cloudflare
+   - Monitoring and performance tuning
+   - Testing and validation procedures
+   - Troubleshooting guide
+   - Maintenance tasks
+
+2. **NODE-STEELGEM-IMPLEMENTATION.md** - Deployment implementation plan
+   - Executive summary
+   - Implementation goals and targets
+   - 10-phase deployment process:
+     - Phase 1: Base system setup
+     - Phase 2: SSL/TLS configuration
+     - Phase 3: Application directory structure
+     - Phase 4: Build applications
+     - Phase 5: PM2 process management
+     - Phase 6: NGINX site configuration
+     - Phase 7: Testing and validation
+     - Phase 8: DNS configuration
+     - Phase 9: Monitoring and logging
+     - Phase 10: Optimization and tuning
+   - Comprehensive deployment checklist
+   - Rollback procedures
+   - Success criteria
+   - Maintenance procedures
+   - Next steps after deployment
+
+3. **conf/node-steelgem/README.md** - Configuration overview
+   - Directory structure
+   - Quick deployment commands
+   - Configuration files explained
+   - Port assignments
+   - Deployment checklist
+   - Monitoring commands
+   - Troubleshooting
+
+### Node-Steelgem Application Configurations
+
+#### DetoxNearMe (Pages Router - Port 3000)
+
+1. **conf/node-steelgem/detoxnearme/pm2.md**
+   - PM2 process configuration
+   - Cluster mode setup
+   - Monitoring commands
+   - Environment variables
+   - Build and deployment
+   - Performance tuning
+   - Troubleshooting
+
+2. **conf/node-steelgem/detoxnearme/nginx/detoxnearme.conf**
+   - NGINX site configuration
+   - SSL/TLS settings
+   - Static asset caching
+   - Proxy configuration
+   - Security headers
+
+3. **conf/node-steelgem/detoxnearme/.env.local.example**
+   - Environment variables template
+   - Database connection
+   - API configuration
+
+4. **conf/node-steelgem/detoxnearme/.nvmrc**
+   - Node.js version specification (v20.19.5)
+
+#### Edge Treatment (App Router - Port 3001)
+
+1. **conf/node-steelgem/edge-nextjs/pm2.md**
+   - PM2 process configuration
+   - App Router architecture details
+   - Contentful CMS integration
+   - ISR revalidation setup
+   - Performance optimization
+   - Troubleshooting
+
+2. **conf/node-steelgem/edge-nextjs/nginx/theedgetreatment.com.conf**
+   - NGINX site configuration
+   - SSL/TLS settings
+   - Static asset caching
+   - App Router support
+
+3. **conf/node-steelgem/edge-nextjs/.env.local.example**
+   - Contentful API credentials
+   - ISR revalidation secret
+   - Analytics configuration
+
+4. **conf/node-steelgem/edge-nextjs/.nvmrc**
+   - Node.js version specification (v20.19.5)
+
+#### Forge Recovery (App Router - Port 3002)
+
+1. **conf/node-steelgem/forge-nextjs/pm2.md**
+   - PM2 process configuration
+   - App Router architecture details
+   - Contentful CMS integration (separate space)
+   - Sister site to Edge Treatment
+   - Performance optimization
+   - Troubleshooting
+
+2. **conf/node-steelgem/forge-nextjs/nginx/theforgerecovery.com.conf**
+   - NGINX site configuration
+   - SSL/TLS settings
+   - Static asset caching
+   - App Router support
+
+3. **conf/node-steelgem/forge-nextjs/.env.local.example**
+   - Contentful API credentials (separate space)
+   - ISR revalidation secret
+   - Analytics configuration
+
+4. **conf/node-steelgem/forge-nextjs/.nvmrc**
+   - Node.js version specification (v20.19.5)
+
+#### PM2 Ecosystem Configuration
+
+1. **conf/node-steelgem/ecosystem.config.js**
+   - Complete PM2 ecosystem configuration
+   - All 3 applications defined
+   - Cluster mode settings (2 instances per app)
+   - Memory limits and auto-restart
+   - Logging configuration
+   - Deployment configuration (optional)
+
 ### Summary & Index
 
 1. **GITLAB-READY.md** - Repository readiness summary
