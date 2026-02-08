@@ -70,3 +70,9 @@ db/
 
 # Misc
 /tmp/
+
+# Pre-commit framework
+.pre-commit-framework/
+
+# Archived documentation (old implementation specs and test docs)
+archived-docs/

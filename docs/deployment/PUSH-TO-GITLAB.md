@@ -96,7 +96,7 @@ echo "Creating commit..."
 git commit -m "feat: production-ready vps-setup repository
 
 - Comprehensive security audit completed
-- Dynamic SSH configuration throughout  
+- Dynamic SSH configuration throughout
 - Modular deployment scripts for any environment
 - Complete documentation and guides
 - No hardcoded credentials or sensitive data
@@ -228,15 +228,17 @@ git push -u origin initial-setup
 ## 📊 What Gets Pushed
 
 ### Files That Will Be Committed
+
 ✅ All documentation (.md files)
 ✅ All scripts (.sh files)
 ✅ Configuration templates (.conf, .nginx, .example files)
 ✅ .gitignore (prevents sensitive files)
 
 ### Files That Will NOT Be Committed
+
 ❌ .env files (excluded by .gitignore)
-❌ *.sql, *.dump files (excluded by .gitignore)
-❌ *.key, *.pem, *.crt files (excluded by .gitignore)
+❌ *.sql,*.dump files (excluded by .gitignore)
+❌ *.key,*.pem, *.crt files (excluded by .gitignore)
 ❌ Node modules, build artifacts (excluded)
 ❌ System files (.DS_Store, etc.)
 
@@ -287,7 +289,7 @@ Team members can now deploy to any VPS:
 cat > .env << EOF
 SSH_HOST="their-vps.com"
 POSTGRES_PASSWORD="secure-password"
-TS_AUTHKEY="tskey_..."
+TAILSCALE_AUTH_KEY="tskey_..."
 EOF
 
 # Deploy!
@@ -298,7 +300,7 @@ EOF
 
 ---
 
-## ✨ Success!
+## ✨ Success
 
 Once pushed, your team has:
 
@@ -309,4 +311,3 @@ Once pushed, your team has:
 ✅ **Best Practices** - Industry-standard approach
 
 **Your vps-setup repository is live on GitLab!** 🎉
-

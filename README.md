@@ -127,8 +127,8 @@ UBUNTU_SUDOERS_CMDS="/usr/bin/systemctl,/usr/sbin/nginx" \
 
 # Remote with Tailscale setup
 SSH_HOST="192.168.1.100" \
-TS_AUTHKEY="tskey-..." \
-TS_HOSTNAME="node-steelgem" \
+TAILSCALE_AUTH_KEY="tskey-..." \
+TAILSCALE_HOSTNAME="node-steelgem" \
 ./scripts/vps-setup.sh
 ```
 
@@ -266,8 +266,8 @@ SSH_HOST="dev-server" ./scripts/deploy.sh web
 | INSTALL_TAILSCALE | true | Install Tailscale VPN |
 | INSTALL_NGINX | true | Install NGINX web server |
 | ALLOW_PUBLIC_SSH | false | Allow SSH over public internet |
-| TS_HOSTNAME | node-steelgem | Tailscale node name |
-| TS_AUTHKEY | (empty) | Tailscale authentication key |
+| TAILSCALE_HOSTNAME | node-steelgem | Tailscale node name |
+| TAILSCALE_AUTH_KEY | (empty) | Tailscale authentication key |
 
 ### Deployment Variables
 

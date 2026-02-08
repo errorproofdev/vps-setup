@@ -9,6 +9,7 @@ The **vps-setup** repository is **SECURE AND READY FOR PRIVATE GITLAB DEPLOYMENT
 ## What's Included
 
 ### 📚 Documentation (Complete)
+
 - ✅ **SECURITY-AUDIT-FINAL.md** - Comprehensive security review
 - ✅ **GITLAB-DEPLOYMENT-GUIDE.md** - Complete deployment instructions
 - ✅ **PRE-COMMIT-CHECKLIST.md** - Final verification steps
@@ -17,12 +18,14 @@ The **vps-setup** repository is **SECURE AND READY FOR PRIVATE GITLAB DEPLOYMENT
 - ✅ Service-specific guides in `docs/` folder
 
 ### 🔧 Scripts (Production-Ready)
+
 - ✅ **scripts/vps-setup.sh** - Main VPS configuration
 - ✅ **scripts/deploy.sh** - Deployment orchestrator
 - ✅ **scripts/services.sh** - Individual service installers
 - ✅ All scripts use dynamic SSH and environment variables
 
 ### 🔐 Security (Verified)
+
 - ✅ No hardcoded credentials
 - ✅ Environment-driven configuration
 - ✅ Comprehensive .gitignore
@@ -30,6 +33,7 @@ The **vps-setup** repository is **SECURE AND READY FOR PRIVATE GITLAB DEPLOYMENT
 - ✅ No tracked sensitive files
 
 ### 📋 Configuration (Examples)
+
 - ✅ NGINX configuration templates
 - ✅ Strapi deployment examples
 - ✅ PostgreSQL setup guides
@@ -40,6 +44,7 @@ The **vps-setup** repository is **SECURE AND READY FOR PRIVATE GITLAB DEPLOYMENT
 ## Key Features
 
 ### Dynamic SSH Configuration
+
 Scripts work with any remote host via environment variables:
 
 ```bash
@@ -56,6 +61,7 @@ SSH_HOST="my-alias" ./scripts/deploy.sh web
 ```
 
 ### Modular Deployment
+
 Choose what to install:
 
 ```bash
@@ -66,6 +72,7 @@ Choose what to install:
 ```
 
 ### Service Management
+
 Install individual services:
 
 ```bash
@@ -76,6 +83,7 @@ Install individual services:
 ```
 
 ### Security-First Design
+
 - All credentials via environment variables
 - No hardcoded passwords
 - SSH key-based authentication
@@ -87,6 +95,7 @@ Install individual services:
 ## Security Checklist ✅
 
 ### Credentials
+
 - ✅ No passwords in scripts
 - ✅ No API keys hardcoded
 - ✅ No SSH keys tracked
@@ -94,18 +103,21 @@ Install individual services:
 - ✅ All secrets via .env (excluded from git)
 
 ### File Permissions
+
 - ✅ Scripts are executable
 - ✅ SSH keys would be 0600
 - ✅ Config files protected
 - ✅ Logs archived properly
 
 ### Access Control
+
 - ✅ SSH key authentication
 - ✅ Tailscale integration
 - ✅ User isolation
 - ✅ Sudo configuration
 
 ### Documentation
+
 - ✅ Setup guides are clear
 - ✅ Examples use placeholders
 - ✅ Security instructions included
@@ -227,7 +239,7 @@ cat > .env << EOF
 SSH_HOST="your-server.com"
 SSH_USER="ubuntu"
 POSTGRES_PASSWORD="secure-password"
-TS_AUTHKEY="tskey_..."
+TAILSCALE_AUTH_KEY="tskey_..."
 EOF
 
 # Load and use
@@ -294,6 +306,7 @@ vps-setup/
 ## Next Steps
 
 ### Immediate (This Session)
+
 1. ✅ Complete security audit
 2. ✅ Sanitize documentation
 3. ✅ Update .gitignore
@@ -301,18 +314,21 @@ vps-setup/
 5. 👉 **Push to GitLab** (next)
 
 ### Short Term (This Week)
+
 1. Set up GitLab repository
 2. Add team members
 3. Configure CI/CD
 4. Test deployments
 
 ### Medium Term (This Month)
+
 1. Deploy first production VPS
 2. Set up monitoring and backups
 3. Document runbooks
 4. Train team on deployment
 
 ### Long Term (Ongoing)
+
 1. Maintain and update scripts
 2. Add new services
 3. Improve automation
@@ -323,17 +339,20 @@ vps-setup/
 ## Support & Maintenance
 
 ### Questions?
+
 - See **README.md** for overview
 - See **GITLAB-DEPLOYMENT-GUIDE.md** for details
 - Check service-specific docs in `docs/` folder
 
 ### Issues Found?
+
 - Document the issue
 - Test fix locally first
 - Commit with clear message
 - Update documentation
 
 ### Security Updates?
+
 - Review SECURITY-AUDIT-FINAL.md
 - Verify no credentials added
 - Test before committing
@@ -346,6 +365,7 @@ vps-setup/
 ✅ **READY TO PUSH TO GITLAB**
 
 All security checks completed:
+
 - No hardcoded credentials
 - Comprehensive documentation
 - Production-ready scripts
@@ -364,18 +384,21 @@ git push origin main
 ## Important Reminders
 
 ⚠️ **Before Pushing**
+
 - [ ] GitLab repository created
 - [ ] Repository visibility set to **Private**
 - [ ] SSH keys configured for team
 - [ ] No test/temp files committed
 
 ⚠️ **After Pushing**
+
 - [ ] Verify no sensitive files visible on GitLab
 - [ ] Add team members as needed
 - [ ] Set up branch protection rules
 - [ ] Enable issue tracking
 
 ⚠️ **During Deployments**
+
 - [ ] Never commit .env files
 - [ ] Always use environment variables
 - [ ] Test in dev environment first

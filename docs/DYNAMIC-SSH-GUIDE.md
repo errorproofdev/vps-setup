@@ -28,6 +28,7 @@ SSH_HOST="192.168.1.100" ./scripts/vps-setup.sh
 ```
 
 **Verification:**
+
 ```bash
 # SSH should connect to the specified host
 ssh -i ~/.ssh/id_rsa ubuntu@192.168.1.100 "uname -a"
@@ -61,7 +62,7 @@ DESTINATION_PATH="/var/www/apps"
 UBUNTU_SUDOERS=true
 UBUNTU_SUDOERS_CMDS="/usr/bin/systemctl,/usr/sbin/nginx,/usr/bin/pm2"
 INSTALL_TAILSCALE=true
-TS_HOSTNAME="node-steelgem"
+TAILSCALE_HOSTNAME="node-steelgem"
 EOF
 
 # Step 3: Run scripts without passing SSH variables
@@ -75,6 +76,7 @@ EOF
 ```
 
 **Verification:**
+
 ```bash
 # Check that .env is loaded
 grep "SSH_HOST" .env
@@ -136,6 +138,7 @@ DESTINATION_HOST="sql-steelgem" \
 ```
 
 **Verification:**
+
 ```bash
 # Test SSH config resolution
 ssh edge-prod "echo 'Connected!'"
@@ -158,22 +161,22 @@ cat > .env << EOF
 UBUNTU_SUDOERS=true
 UBUNTU_SUDOERS_CMDS="/usr/bin/systemctl,/usr/sbin/nginx"
 INSTALL_TAILSCALE=true
-TS_HOSTNAME="node-web-1"
+TAILSCALE_HOSTNAME="node-web-1"
 EOF
 
 # Setup web server 1
 SSH_HOST="192.168.1.100" \
-TS_HOSTNAME="node-web-1" \
+TAILSCALE_HOSTNAME="node-web-1" \
 ./scripts/vps-setup.sh
 
 # Setup web server 2
 SSH_HOST="192.168.1.101" \
-TS_HOSTNAME="node-web-2" \
+TAILSCALE_HOSTNAME="node-web-2" \
 ./scripts/vps-setup.sh
 
 # Setup database server
 SSH_HOST="192.168.1.102" \
-TS_HOSTNAME="node-db" \
+TAILSCALE_HOSTNAME="node-db" \
 ./scripts/vps-setup.sh
 
 # Deploy web server configuration
@@ -185,6 +188,7 @@ SSH_HOST="192.168.1.102" ./scripts/deploy.sh database
 ```
 
 **Verification:**
+
 ```bash
 # Verify all servers are responding
 for host in 192.168.1.100 192.168.1.101 192.168.1.102; do
@@ -221,6 +225,7 @@ ssh ubuntu@192.168.1.101 "curl -I http://localhost:3000"
 ```
 
 **Full deployment cycle:**
+
 ```bash
 # 1. Setup source server
 SSH_HOST="192.168.1.100" ./scripts/vps-setup.sh
@@ -270,6 +275,7 @@ SSH_HOST="custom-port-server" ./scripts/vps-setup.sh
 ```
 
 **Verification:**
+
 ```bash
 # Test SSH connection on custom port
 ssh -p 2222 ubuntu@192.168.1.100 "echo 'Connected!'"
@@ -393,6 +399,7 @@ ssh ubuntu@192.168.1.100 "sudo journalctl -f"
 ## Best Practices
 
 1. **Use .env for persistent configuration**
+
    ```bash
    cp .env.example .env
    # Commit .env to version control (with secrets removed)
@@ -400,22 +407,26 @@ ssh ubuntu@192.168.1.100 "sudo journalctl -f"
    ```
 
 2. **Use ~/.ssh/config for complex server setups**
+
    ```bash
    # Centralize all SSH configuration
    # Makes scripts portable and easy to maintain
    ```
 
 3. **Test connectivity before deployment**
+
    ```bash
    SSH_HOST="192.168.1.100" ssh ubuntu@192.168.1.100 "echo 'Ready'"
    ```
 
 4. **Use environment variables for one-off tests**
+
    ```bash
    SSH_HOST="test-server" ./scripts/vps-setup.sh --help
    ```
 
 5. **Log all deployments**
+
    ```bash
    SSH_HOST="192.168.1.100" ./scripts/deploy.sh web | tee deploy.log
    ```
@@ -424,13 +435,15 @@ ssh ubuntu@192.168.1.100 "sudo journalctl -f"
 
 If you were using hardcoded aliases before:
 
-### Old way (no longer needed):
+### Old way (no longer needed)
+
 ```bash
 # This relied on shell aliases
 ssh sql-steelgem "sudo ./vps-setup.sh"
 ```
 
-### New way:
+### New way
+
 ```bash
 # Configure once in ~/.ssh/config
 Host sql-steelgem
@@ -453,10 +466,10 @@ echo 'SSH_HOST="sql-steelgem"' >> .env
 
 The new dynamic SSH system provides:
 
-✅ **No hardcoded aliases** - Use IPs, hostnames, or SSH config  
-✅ **Flexible configuration** - Environment, .env, or SSH config  
-✅ **Portable scripts** - Work anywhere SSH is configured  
-✅ **Multiple servers** - Easy multi-server deployments  
-✅ **Clear priorities** - Environment > .env > SSH config > defaults  
+✅ **No hardcoded aliases** - Use IPs, hostnames, or SSH config
+✅ **Flexible configuration** - Environment, .env, or SSH config
+✅ **Portable scripts** - Work anywhere SSH is configured
+✅ **Multiple servers** - Easy multi-server deployments
+✅ **Clear priorities** - Environment > .env > SSH config > defaults
 
 Enjoy your new alias-free VPS setup workflow! 🚀

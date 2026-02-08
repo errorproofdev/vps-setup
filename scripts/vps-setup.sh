@@ -73,8 +73,8 @@ execute_remote() {
         "INSTALL_TAILSCALE"
         "INSTALL_NGINX"
         "SSH_PUBKEY"
-        "TS_HOSTNAME"
-        "TS_AUTHKEY"
+        "TAILSCALE_HOSTNAME"
+        "TAILSCALE_AUTH_KEY"
         "UBUNTU_SUDO"
         "UBUNTU_SUDOERS"
         "UBUNTU_SUDOERS_CMDS"
@@ -127,8 +127,8 @@ Configurable environment variables:
     INSTALL_TAILSCALE     Default: true    (true|false)
     INSTALL_NGINX         Default: true    (true|false)
     SSH_PUBKEY            Default: (empty) Public key to add for ubuntu user
-    TS_HOSTNAME           Default: node-steelgem
-    TS_AUTHKEY            Default: (empty) Tailscale auth key for non-interactive setup
+    TAILSCALE_HOSTNAME           Default: node-steelgem
+    TAILSCALE_AUTH_KEY            Default: (empty) Tailscale auth key for non-interactive setup
 
 User policy:
     UBUNTU_SUDO           Default: false   (true|false)
@@ -143,7 +143,7 @@ Examples:
     sudo ./vps-setup.sh
 
     # Local - With Tailscale
-    TS_AUTHKEY="tskey-..." TS_HOSTNAME="node-steelgem" sudo ./vps-setup.sh
+    TAILSCALE_AUTH_KEY="tskey-..." TAILSCALE_HOSTNAME="node-steelgem" sudo ./vps-setup.sh
 
     # Remote - Using IP address
     SSH_HOST="192.168.1.100" SSH_USER="ubuntu" ./vps-setup.sh
@@ -181,9 +181,9 @@ INSTALL_NGINX="${INSTALL_NGINX:-true}"         # true|false
 # Optional: provide SSH public key for ubuntu user
 SSH_PUBKEY="${SSH_PUBKEY:-}"
 
-# Tailscale options (TS_AUTHKEY enables non-interactive)
-TS_HOSTNAME="${TS_HOSTNAME:-node-steelgem}"
-TS_AUTHKEY="${TS_AUTHKEY:-}"
+# Tailscale options (TAILSCALE_AUTH_KEY enables non-interactive)
+TAILSCALE_HOSTNAME="${TAILSCALE_HOSTNAME:-node-steelgem}"
+TAILSCALE_AUTH_KEY="${TAILSCALE_AUTH_KEY:-}"
 
 # Function to detect if running as root
 check_root() {
@@ -321,11 +321,11 @@ install_tailscale() {
 
     systemctl enable --now tailscaled
 
-    # Bring up Tailscale (interactive unless TS_AUTHKEY is provided)
-    if [[ -n "${TS_AUTHKEY}" ]]; then
-        tailscale up --ssh --hostname "${TS_HOSTNAME}" --authkey "${TS_AUTHKEY}" || true
+    # Bring up Tailscale (interactive unless TAILSCALE_AUTH_KEY is provided)
+    if [[ -n "${TAILSCALE_AUTH_KEY}" ]]; then
+        tailscale up --ssh --hostname "${TAILSCALE_HOSTNAME}" --authkey "${TAILSCALE_AUTH_KEY}" || true
     else
-        tailscale up --ssh --hostname "${TS_HOSTNAME}" || true
+        tailscale up --ssh --hostname "${TAILSCALE_HOSTNAME}" || true
     fi
 
     success "Tailscale installed (and 'tailscale up' attempted)"
@@ -427,7 +427,7 @@ show_next_steps() {
     echo
     echo "Next Steps:"
     echo "1. (If needed) Authenticate Tailscale: tailscale up"
-    echo "2. Verify Tailscale SSH: ssh ${UBUNTU_USER}@${TS_HOSTNAME}"
+    echo "2. Verify Tailscale SSH: ssh ${UBUNTU_USER}@${TAILSCALE_HOSTNAME}"
     echo "3. If verified, keep public SSH closed (ALLOW_PUBLIC_SSH=false)"
     echo "4. Configure your applications/services"
     echo

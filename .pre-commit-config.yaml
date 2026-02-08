@@ -1,0 +1,29 @@
+repos:
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.37.0
+    hooks:
+      - id: markdownlint
+        name: Markdown Lint
+        description: Lints markdown files
+        entry: markdownlint
+        language: node
+        types: [markdown]
+        args: [--fix]
+
+  - repo: local
+    hooks:
+      - id: check-merge-conflict
+        name: Check for merge conflicts
+        entry: bash -c 'grep -r "^<<<<<<< " --include="*.md" . && exit 1 || exit 0'
+        language: system
+        types: [markdown]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        name: Trim trailing whitespace
+        types: [markdown]
+      - id: end-of-file-fixer
+        name: Fix end of file
+        types: [markdown]

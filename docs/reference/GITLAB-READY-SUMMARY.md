@@ -9,6 +9,7 @@ The **vps-setup** repository has been fully prepared for private GitLab deployme
 ## 📋 What Was Done This Session
 
 ### 1. **Security Audit** ✅
+
 - Scanned all scripts for hardcoded credentials
 - Verified no passwords in documentation
 - Confirmed environment-driven configuration throughout
@@ -16,18 +17,21 @@ The **vps-setup** repository has been fully prepared for private GitLab deployme
 - Verified no tracked sensitive files
 
 ### 2. **Documentation Created** ✅
+
 - **SECURITY-AUDIT-FINAL.md** - Detailed security review
 - **GITLAB-DEPLOYMENT-GUIDE.md** - Complete deployment instructions
 - **PRE-COMMIT-CHECKLIST.md** - Pre-commit verification steps
 - **GITLAB-READY.md** - Summary and next steps
 
 ### 3. **Code Sanitization** ✅
+
 - Replaced hardcoded passwords with `<db-password>` placeholders
 - Updated all documentation examples
 - Ensured all scripts use environment variables
 - Verified .gitignore effectiveness
 
 ### 4. **Final Verification** ✅
+
 - No sensitive files tracked in git
 - .gitignore properly configured
 - All scripts follow security best practices
@@ -99,7 +103,7 @@ git commit -m "feat: production-ready vps-setup repository
 
 - Comprehensive security audit completed
 - Dynamic SSH configuration throughout
-- Modular deployment scripts for any environment  
+- Modular deployment scripts for any environment
 - Complete documentation and guides
 - No hardcoded credentials or sensitive data
 - Ready for private GitLab repository"
@@ -128,25 +132,30 @@ After pushing, the following documents will be available on GitLab:
 ## 🔐 Security Highlights
 
 ### No Hardcoded Secrets
+
 ✅ All credentials use environment variables or .env files (excluded from git)
 
-### Dynamic SSH Configuration  
+### Dynamic SSH Configuration
+
 ✅ Scripts work with any host via `SSH_HOST` variable
 
 ### Environment-Driven
+
 ✅ Configuration provided at deployment time, not in code
 
 ### Comprehensive .gitignore
+
 ✅ Excludes all sensitive patterns automatically
 
 ### Best Practices Throughout
+
 ✅ Error handling, logging, modularity, documentation
 
 ---
 
 ## 🚀 Deployment Examples (After GitLab Setup)
 
-### Team members can deploy like this:
+### Team members can deploy like this
 
 ```bash
 # Clone from GitLab
@@ -157,12 +166,12 @@ cd vps-setup
 cat > .env << EOF
 SSH_HOST="your-server.com"
 POSTGRES_PASSWORD="secure-password"
-TS_AUTHKEY="tskey_..."
+TAILSCALE_AUTH_KEY="tskey_..."
 EOF
 
 # Deploy to any VPS
 ./scripts/deploy.sh web
-./scripts/deploy.sh database  
+./scripts/deploy.sh database
 ./scripts/deploy.sh production
 ```
 
@@ -171,17 +180,20 @@ EOF
 ## ⚠️ Important Reminders
 
 ### Before Pushing
+
 - [ ] GitLab repository created and set to PRIVATE
 - [ ] SSH keys configured for team access
 - [ ] No test/temporary files in repository
 
-### After Pushing  
+### After Pushing
+
 - [ ] Verify repository on GitLab shows no sensitive files
 - [ ] Add team members to project
 - [ ] Review file visibility
 - [ ] Test clone from fresh checkout
 
 ### During Team Use
+
 - [ ] Never commit .env files
 - [ ] Always use environment variables for secrets
 - [ ] Test in development first
@@ -194,7 +206,7 @@ EOF
 All documentation is self-contained in the repository:
 
 - **First time?** Read `QUICK-START.md`
-- **Need details?** Check `GITLAB-DEPLOYMENT-GUIDE.md`  
+- **Need details?** Check `GITLAB-DEPLOYMENT-GUIDE.md`
 - **Security questions?** See `SECURITY-AUDIT-FINAL.md`
 - **Pre-commit?** Use `PRE-COMMIT-CHECKLIST.md`
 - **Service-specific?** Look in `docs/` folder
@@ -204,21 +216,25 @@ All documentation is self-contained in the repository:
 ## 🎓 What Your Team Gets
 
 ✅ **Production-Ready Scripts**
+
 - VPS setup in minutes
 - Modular deployment options
 - Works with any cloud provider
 
 ✅ **Comprehensive Documentation**
+
 - Step-by-step guides
 - Real-world examples
 - Troubleshooting help
 
 ✅ **Security Best Practices**
+
 - No hardcoded credentials
 - Environment-driven config
 - Audit trails and logging
 
 ✅ **Team Collaboration**
+
 - Private GitLab repository
 - Clear contribution guidelines
 - Easy to understand and maintain
@@ -228,16 +244,19 @@ All documentation is self-contained in the repository:
 ## 📈 Next Milestones
 
 ### This Week
+
 - [ ] Push to GitLab
 - [ ] Add team members
 - [ ] Configure CI/CD (optional)
 
-### This Month  
+### This Month
+
 - [ ] Deploy first VPS
 - [ ] Test all configurations
 - [ ] Document any customizations
 
 ### Ongoing
+
 - [ ] Keep scripts updated
 - [ ] Add new services
 - [ ] Improve automation
@@ -262,7 +281,7 @@ Services: 10+ installable modules
 
 ---
 
-## 🎉 Ready to Deploy!
+## 🎉 Ready to Deploy
 
 Your vps-setup repository is production-ready and secure. Team members can now:
 
@@ -278,6 +297,7 @@ Your vps-setup repository is production-ready and secure. Team members can now:
 ## Questions?
 
 Everything is documented:
+
 - Basic setup → `QUICK-START.md`
 - Detailed deployment → `GITLAB-DEPLOYMENT-GUIDE.md`
 - Security details → `SECURITY-AUDIT-FINAL.md`

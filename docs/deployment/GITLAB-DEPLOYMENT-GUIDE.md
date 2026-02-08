@@ -39,8 +39,8 @@ SSH_PORT="22"                              # SSH port
 SSH_KEY="~/.ssh/id_rsa"                   # Path to SSH private key
 
 # Tailscale Configuration
-TS_AUTHKEY="tskey_..."                    # From https://login.tailscale.com/admin/settings/keys
-TS_HOSTNAME="prod-db"                     # Tailscale device name
+TAILSCALE_AUTH_KEY="tskey_..."                    # From https://login.tailscale.com/admin/settings/keys
+TAILSCALE_HOSTNAME="prod-db"                     # Tailscale device name
 
 # Database Configuration
 POSTGRES_PASSWORD="secure-password"        # PostgreSQL password
@@ -219,7 +219,7 @@ ssh ubuntu@your-vps.example.com "echo 'SSH works!'"
 
 ```bash
 # Get auth key from: https://login.tailscale.com/admin/settings/keys
-export TS_AUTHKEY="tskey_..."
+export TAILSCALE_AUTH_KEY="tskey_..."
 
 # Deploy with Tailscale enabled
 ./scripts/deploy.sh production
@@ -273,7 +273,7 @@ EOF
 cat > .env << EOF
 SSH_HOST="prod.example.com"
 SSH_USER="ubuntu"
-TS_AUTHKEY="tskey_..."
+TAILSCALE_AUTH_KEY="tskey_..."
 POSTGRES_PASSWORD="prod-db-password"
 NODE_VERSION="18.17.0"
 EOF
@@ -293,17 +293,20 @@ EOF
 ## Documentation Files
 
 ### Getting Started
+
 - 📖 **README.md** - Overview and quick start
 - 🚀 **QUICK-START.md** - Fast setup guide
 - ⚡ **00-README-FIRST.md** - Initial setup checklist
 
 ### Deployment Guides
+
 - 📋 **IMPLEMENTATION-COMPLETE.md** - Feature checklist
 - 🔐 **SECURITY-AUDIT-FINAL.md** - Security review
 - 📚 **docs/NEXTJS-DEPLOYMENT.md** - Next.js deployment
 - 📚 **docs/SERVER-CONTEXT.md** - Server architecture
 
 ### Service-Specific
+
 - 🐘 **docs/BASTION-SETUP.md** - Bastion host setup
 - 📊 **POSTGRESQL-SETUP-CHECKLIST.sh** - PostgreSQL guide
 - 🚀 **conf/detoxnearme-strapi/edge-pm2.md** - Strapi deployment
@@ -539,6 +542,4 @@ For issues or questions:
 
 1. Check relevant documentation file
 2. Review script comments and logs
-3. Test in development environment first
-4. Contact team lead for production deployments
-
+3. Contact team lead for production deployments

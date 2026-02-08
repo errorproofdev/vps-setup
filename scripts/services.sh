@@ -53,7 +53,7 @@ EOF
     log "Usage: vps-services <service_name>"
 }
 
-# Tailscale Installation (recommended: TS_AUTHKEY for non-interactive)
+# Tailscale Installation (recommended: TAILSCALE_AUTH_KEY for non-interactive)
 install_tailscale() {
     log "Installing Tailscale..."
 
@@ -63,12 +63,12 @@ install_tailscale() {
 
     systemctl enable --now tailscaled
 
-    # Bring up Tailscale (interactive unless TS_AUTHKEY is set)
-    TS_HOSTNAME="${TS_HOSTNAME:-wp-steelgem}"
-    if [[ -n "${TS_AUTHKEY:-}" ]]; then
-        tailscale up --ssh --hostname "${TS_HOSTNAME}" --authkey "${TS_AUTHKEY}" || true
+    # Bring up Tailscale (interactive unless TAILSCALE_AUTH_KEY is set)
+    TAILSCALE_HOSTNAME="${TAILSCALE_HOSTNAME:-wp-steelgem}"
+    if [[ -n "${TAILSCALE_AUTH_KEY:-}" ]]; then
+        tailscale up --ssh --hostname "${TAILSCALE_HOSTNAME}" --authkey "${TAILSCALE_AUTH_KEY}" || true
     else
-        tailscale up --ssh --hostname "${TS_HOSTNAME}" || true
+        tailscale up --ssh --hostname "${TAILSCALE_HOSTNAME}" || true
     fi
 
     success "Tailscale installed (and 'tailscale up' attempted)"

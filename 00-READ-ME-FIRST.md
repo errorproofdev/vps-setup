@@ -11,12 +11,14 @@ This repository contains production-ready scripts and documentation for automate
 This session focused on **security audit and GitLab preparation**:
 
 ✅ **Security Audit Complete**
+
 - Scanned all scripts and documentation for hardcoded credentials
 - Verified environment-driven configuration throughout
 - Updated .gitignore with comprehensive sensitive file patterns
 - Confirmed zero tracked secrets
 
 ✅ **Documentation Created**
+
 - `SECURITY-AUDIT-FINAL.md` - Detailed security review
 - `GITLAB-DEPLOYMENT-GUIDE.md` - Complete deployment instructions
 - `GITLAB-READY-SUMMARY.md` - Session summary
@@ -24,11 +26,13 @@ This session focused on **security audit and GitLab preparation**:
 - `PRE-COMMIT-CHECKLIST.md` - Verification steps
 
 ✅ **Code Sanitized**
+
 - Replaced all hardcoded passwords with `<password>` placeholders
 - Updated documentation examples with environment variable notation
 - Verified all scripts use environment-driven configuration
 
 ✅ **Repository Ready**
+
 - No sensitive files tracked in git
 - .gitignore properly configured
 - All security best practices implemented
@@ -49,7 +53,7 @@ cd vps-setup
 cat > .env << EOF
 SSH_HOST="your-vps.example.com"
 POSTGRES_PASSWORD="secure-password"
-TS_AUTHKEY="tskey_from_tailscale_admin"
+TAILSCALE_AUTH_KEY="tskey_from_tailscale_admin"
 EOF
 
 # 3. Deploy to VPS
@@ -93,6 +97,7 @@ cat .gitignore
 ## 📋 Repository Contents
 
 ### Scripts
+
 - **scripts/vps-setup.sh** - Main VPS setup script (modular, environment-driven)
 - **scripts/deploy.sh** - Deployment orchestrator with multiple configuration profiles
 - **scripts/services.sh** - Individual service installer modules
@@ -100,6 +105,7 @@ cat .gitignore
 - **scripts/deploy-bastion.sh** - Bastion host deployment
 
 ### Documentation
+
 - **README.md** - This file (project overview)
 - **QUICK-START.md** - Fast setup guide
 - **GITLAB-DEPLOYMENT-GUIDE.md** - Detailed deployment instructions
@@ -109,10 +115,12 @@ cat .gitignore
 - **PRE-COMMIT-CHECKLIST.md** - Pre-commit verification
 
 ### Configuration Templates
+
 - **conf/www.theedgetreatment.com/** - Web server configurations
 - **conf/detoxnearme-strapi/** - Strapi application templates
 
 ### Guides
+
 - **docs/NEXTJS-DEPLOYMENT.md** - Next.js specific deployment
 - **docs/BASTION-SETUP.md** - Bastion host configuration
 - **docs/SERVER-CONTEXT.md** - Architecture overview
@@ -123,23 +131,27 @@ cat .gitignore
 ## 🔐 Security Features
 
 ### No Hardcoded Credentials
+
 - All secrets via environment variables or .env files
 - .env files excluded from git (via .gitignore)
 - No passwords in documentation or scripts
 
 ### Dynamic SSH Configuration
+
 - Works with any remote host
 - Environment variable: `SSH_HOST`
 - Fallback to SSH config aliases
 - No hardcoded IP addresses or hostnames
 
 ### Environment-Driven
+
 - Configuration provided at deployment time
 - Easy to customize per environment
 - Clear variable naming conventions
 - Documentation of required variables
 
 ### Best Practices
+
 - `set -euo pipefail` in all scripts
 - Proper error handling and logging
 - Colored output for readability
@@ -151,36 +163,42 @@ cat .gitignore
 ## 🎯 Deployment Options
 
 ### Minimal Setup
+
 ```bash
 ./scripts/deploy.sh minimal
 # Base OS configuration: updates, SSH, firewall
 ```
 
 ### Web Server
+
 ```bash
 ./scripts/deploy.sh web
 # NGINX, Node.js, PM2, SSL support
 ```
 
 ### Database Server
+
 ```bash
 ./scripts/deploy.sh database
 # PostgreSQL, Redis, backup utilities
 ```
 
 ### Development Environment
+
 ```bash
 ./scripts/deploy.sh dev
 # Development tools, Docker, debuggers
 ```
 
 ### Production Stack
+
 ```bash
 ./scripts/deploy.sh production
 # Everything: web, database, monitoring, backups
 ```
 
 ### Full Setup
+
 ```bash
 ./scripts/deploy.sh full
 # All services and optional tools
@@ -204,6 +222,7 @@ cat .gitignore
 ## 🛠️ Service Coverage
 
 ### Installed by Default
+
 - Ubuntu 24.04 base system
 - SSH configuration
 - UFW firewall
@@ -211,22 +230,26 @@ cat .gitignore
 - Curl and wget utilities
 
 ### Web Services
+
 - NGINX (reverse proxy, static files)
 - Node.js (via NVM)
 - PM2 (process manager)
 - SSL/TLS support (via certbot)
 
 ### Databases
+
 - PostgreSQL 16
 - Redis
 - Backup utilities
 
 ### Development Tools
+
 - Docker and Docker Compose
 - Development libraries
 - Git and version control
 
 ### Monitoring (Production)
+
 - Service status checks
 - Log aggregation
 - Health monitoring
@@ -237,11 +260,13 @@ cat .gitignore
 ## 🔧 SSH Configuration Methods
 
 ### Method 1: Environment Variable (Recommended)
+
 ```bash
 SSH_HOST="my-server.com" ./scripts/deploy.sh web
 ```
 
 ### Method 2: .env File (Local, Not Committed)
+
 ```bash
 cat > .env << EOF
 SSH_HOST="my-server.com"
@@ -253,6 +278,7 @@ EOF
 ```
 
 ### Method 3: SSH Config Alias
+
 ```bash
 # ~/.ssh/config
 Host my-server
@@ -265,6 +291,7 @@ SSH_HOST="my-server" ./scripts/deploy.sh web
 ```
 
 ### Method 4: Direct Environment
+
 ```bash
 export SSH_HOST="my-server.com"
 ./scripts/deploy.sh web
@@ -292,11 +319,13 @@ Before pushing to GitLab, we verified:
 ## 📖 Usage Examples
 
 ### Deploy a Web Server
+
 ```bash
 SSH_HOST="web.example.com" ./scripts/deploy.sh web
 ```
 
-### Deploy Database Server  
+### Deploy Database Server
+
 ```bash
 SSH_HOST="db.example.com" \
   POSTGRES_PASSWORD="secure-pw" \
@@ -304,16 +333,18 @@ SSH_HOST="db.example.com" \
 ```
 
 ### Install Specific Service
+
 ```bash
 SSH_HOST="server.example.com" \
   ./scripts/services.sh postgresql
 ```
 
 ### Full Production Deployment
+
 ```bash
 cat > .env << EOF
 SSH_HOST="prod.example.com"
-TS_AUTHKEY="tskey_..."
+TAILSCALE_AUTH_KEY="tskey_..."
 POSTGRES_PASSWORD="secure-password"
 EOF
 
@@ -325,12 +356,15 @@ EOF
 ## 🚀 Next Steps
 
 ### 1. Push to GitLab
+
 See `PUSH-TO-GITLAB.md` for detailed instructions:
+
 ```bash
 git push -u origin main
 ```
 
 ### 2. Share with Team
+
 ```bash
 # Team members clone and deploy
 git clone git@gitlab.your-domain.com:your-org/vps-setup.git
@@ -339,6 +373,7 @@ cd vps-setup
 ```
 
 ### 3. Monitor and Maintain
+
 ```bash
 # Check deployment status
 ssh ubuntu@your-vps.com "systemctl status nginx"
@@ -350,17 +385,20 @@ pm2 status
 ## 📞 Support
 
 ### Documentation First
+
 - Basic questions → **QUICK-START.md**
 - Deployment details → **GITLAB-DEPLOYMENT-GUIDE.md**
 - Security questions → **SECURITY-AUDIT-FINAL.md**
 - Troubleshooting → **GITLAB-DEPLOYMENT-GUIDE.md** (Troubleshooting section)
 
 ### Script Help
+
 - Each script has comments explaining functions
 - Use `bash -n script.sh` to check syntax
 - Use `bash -x script.sh` to debug execution
 
 ### Team Resources
+
 - Check **docs/** folder for service-specific guides
 - Review configuration examples in **conf/** folder
 - Look at **PRE-COMMIT-CHECKLIST.md** for verification steps
@@ -370,27 +408,31 @@ pm2 status
 ## 🎓 Key Takeaways
 
 ### For Everyone
-✅ This is a **secure, production-ready** repository  
-✅ No credentials are ever committed  
-✅ Easy to understand and maintain  
+
+✅ This is a **secure, production-ready** repository
+✅ No credentials are ever committed
+✅ Easy to understand and maintain
 ✅ Thoroughly documented
 
 ### For Operators
-✅ Deploy infrastructure in minutes  
-✅ Works with any cloud provider  
-✅ Multiple deployment profiles available  
+
+✅ Deploy infrastructure in minutes
+✅ Works with any cloud provider
+✅ Multiple deployment profiles available
 ✅ Full service coverage
 
 ### For Developers
-✅ Well-structured and modular scripts  
-✅ Clear error handling and logging  
-✅ Environment-driven configuration  
+
+✅ Well-structured and modular scripts
+✅ Clear error handling and logging
+✅ Environment-driven configuration
 ✅ Extensible service modules
 
 ### For Security
-✅ Comprehensive .gitignore  
-✅ No hardcoded secrets  
-✅ Security best practices throughout  
+
+✅ Comprehensive .gitignore
+✅ No hardcoded secrets
+✅ Security best practices throughout
 ✅ Audit trail and logging
 
 ---
@@ -409,7 +451,7 @@ Security Checks: All Passed ✅
 
 ---
 
-## 🎉 Ready for Team Use!
+## 🎉 Ready for Team Use
 
 This repository is **secure, documented, and ready** for your team to:
 

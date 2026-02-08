@@ -1,4 +1,5 @@
 # Security Audit Report - VPS Setup Repository
+
 **Date:** 2024
 **Status:** ✅ READY FOR PRIVATE GITLAB COMMIT
 
@@ -9,6 +10,7 @@
 The **vps-setup** repository has been thoroughly audited for security vulnerabilities and sensitive data exposure. The codebase is **SAFE FOR PRIVATE GITLAB COMMIT** with comprehensive security controls in place.
 
 ### Audit Results
+
 - ✅ **No hardcoded credentials found** in tracked files
 - ✅ **Comprehensive .gitignore** excludes all sensitive patterns
 - ✅ **Scripts follow security best practices** (environment-driven configuration)
@@ -21,23 +23,27 @@ The **vps-setup** repository has been thoroughly audited for security vulnerabil
 ## Detailed Findings
 
 ### 1. **Credential Management** ✅
+
 **Status:** SECURE
 
 #### What Was Audited
+
 - All shell scripts (vps-setup.sh, deploy.sh, services.sh, etc.)
 - Configuration files and documentation
 - Database setup scripts
 - Deployment guides
 
 #### Findings
+
 - **No hardcoded passwords** in any tracked files
-- All scripts use environment variables for sensitive configuration (e.g., `$SSH_HOST`, `$TS_AUTHKEY`)
+- All scripts use environment variables for sensitive configuration (e.g., `$SSH_HOST`, `$TAILSCALE_AUTH_KEY`)
 - Credentials are expected to be provided at runtime via:
   - `.env` files (excluded from git)
   - Environment variables (set at deploy time)
   - SSH configuration (not committed)
 
 #### Example Pattern (✅ Correct)
+
 ```bash
 # Scripts properly use variables
 PGPASSWORD="${PGPASSWORD:-}" ssh "$HOST" "psql -U strapi -d detoxnearme"
@@ -49,9 +55,11 @@ DATABASE_URL="${DATABASE_URL:-postgresql://...}"
 ---
 
 ### 2. **.gitignore Coverage** ✅
+
 **Status:** COMPREHENSIVE
 
 #### Protected Patterns
+
 ```
 # Environment files (with all variants)
 .env
@@ -81,6 +89,7 @@ secrets.json
 ```
 
 #### Verification
+
 - ✅ All sensitive file patterns covered
 - ✅ Dumps and SQL files excluded (production data)
 - ✅ SSH keys excluded
@@ -89,21 +98,25 @@ secrets.json
 ---
 
 ### 3. **Documentation Security** ✅
+
 **Status:** SANITIZED
 
 #### Files Reviewed
+
 - `DEPLOYMENT-COMPLETE.md` - ✅ Sanitized
 - `IMPLEMENTATION-COMPLETE.md` - ✅ Clean
 - `docs/NEXTJS-DEPLOYMENT.md` - ✅ Clean
 - `README.md` - ✅ Clean
 
 #### Changes Made
+
 | File | Issue | Resolution |
 |------|-------|-----------|
 | `DEPLOYMENT-COMPLETE.md` | Hardcoded password in psql examples | Replaced with `<db-password>` placeholder |
 | `POSTGRESQL-SETUP-CHECKLIST.sh` | Example passwords in comments | Verified as test-only documentation |
 
 #### All Documentation
+
 - ✅ Uses placeholders for passwords
 - ✅ Provides clear security instructions
 - ✅ References .env for sensitive values
@@ -112,21 +125,25 @@ secrets.json
 ---
 
 ### 4. **Repository State** ✅
+
 **Status:** CLEAN
 
 #### Git History
+
 - ✅ No sensitive commits
 - ✅ No SQL dumps in history
 - ✅ No .env files tracked
 - ✅ No credentials in commit messages
 
 #### Current Tracked Files
+
 - Shell scripts (properly formatted)
 - Configuration templates (.example files)
 - Documentation (sanitized)
 - Architecture files
 
 #### What's NOT Tracked
+
 - `.env*` files (environment-specific)
 - `*.dump`, `*.sql` files (database data)
 - `*.key`, `*.pem` files (SSL/SSH keys)
@@ -137,6 +154,7 @@ secrets.json
 ## Security Practices Implemented
 
 ### 1. **Environment-Driven Configuration**
+
 ```bash
 # ✅ Correct pattern used throughout
 SSH_HOST="${SSH_HOST:-localhost}"
@@ -145,9 +163,10 @@ POSTGRES_USER="${POSTGRES_USER:-postgres}"
 ```
 
 ### 2. **Runtime Secret Injection**
+
 ```bash
 # ✅ Secrets provided at deploy time
-export TS_AUTHKEY="tskey_abc123..."
+export TAILSCALE_AUTH_KEY="tskey_abc123..."
 ./scripts/services.sh tailscale
 
 # ✅ Or via .env (not committed)
@@ -158,12 +177,14 @@ EOF
 ```
 
 ### 3. **Secure Defaults**
+
 - All scripts require explicit configuration
 - No hardcoded IPs or hostnames (except examples)
 - Passwords must be set explicitly
 - SSH keys must be provided externally
 
 ### 4. **Documentation Best Practices**
+
 - Security instructions included
 - Placeholders used instead of real credentials
 - Examples marked as "test-only"
@@ -174,6 +195,7 @@ EOF
 ## Pre-Commit Checklist
 
 ### Before Pushing to GitLab
+
 - [ ] ✅ No `.env` or `.env.*` files staged
 - [ ] ✅ No `*.sql` or `*.dump` files staged
 - [ ] ✅ No `*.key` or `*.pem` files staged
@@ -184,6 +206,7 @@ EOF
 - [ ] ✅ No API keys or tokens exposed
 
 ### Verification Commands
+
 ```bash
 # Check for secrets about to be committed
 git diff --cached | grep -i "password\|secret\|api.key\|token" || echo "✅ No secrets found"
@@ -202,19 +225,21 @@ git check-ignore -v .env .env.local *.sql *.dump || echo "⚠️ Check .gitignor
 ### For Private GitLab Usage
 
 #### 1. **Clone Repository**
+
 ```bash
 git clone https://gitlab.your-domain.com/your-org/vps-setup.git
 cd vps-setup
 ```
 
 #### 2. **Create .env Files Locally**
+
 ```bash
 # Create production environment
 cat > .env << EOF
 SSH_HOST="prod-db.example.com"
 SSH_USER="deploy"
 SSH_PORT="22"
-TS_AUTHKEY="tskey_..." # From Tailscale admin
+TAILSCALE_AUTH_KEY="tskey_..." # From Tailscale admin
 POSTGRES_PASSWORD="secure-password"
 EOF
 
@@ -226,6 +251,7 @@ EOF
 ```
 
 #### 3. **Run Deployment**
+
 ```bash
 # Local execution
 sudo ./scripts/vps-setup.sh
@@ -238,6 +264,7 @@ sudo ./scripts/vps-setup.sh
 ```
 
 #### 4. **No Secrets Leaked**
+
 ```bash
 # Always in .gitignore, never committed
 .env
@@ -250,12 +277,14 @@ conf/**/.env.local
 ## Recommendations
 
 ### Immediate (Completed ✅)
+
 - [x] Sanitize documentation of hardcoded credentials
 - [x] Verify .gitignore coverage
 - [x] Audit all scripts for hardcoded secrets
 - [x] Remove any tracked sensitive files
 
 ### For Ongoing Security
+
 1. **Secret Scanning**
    - Enable GitLab Secret Detection in CI/CD
    - Use pre-commit hooks to scan for secrets
@@ -283,6 +312,7 @@ conf/**/.env.local
 ## Files Reviewed
 
 ### Scripts
+
 - ✅ `scripts/vps-setup.sh` - No secrets
 - ✅ `scripts/deploy.sh` - No secrets
 - ✅ `scripts/services.sh` - No secrets
@@ -291,10 +321,12 @@ conf/**/.env.local
 - ✅ `scripts/deploy-bastion.sh` - No secrets
 
 ### Configuration
+
 - ✅ `conf/www.theedgetreatment.com/nginx/*` - No secrets
 - ✅ `conf/detoxnearme-strapi/` - No secrets (dumps excluded)
 
 ### Documentation
+
 - ✅ `README.md` - Sanitized
 - ✅ `AGENTS.md` - No secrets
 - ✅ `docs/NEXTJS-DEPLOYMENT.md` - No secrets
@@ -306,11 +338,12 @@ conf/**/.env.local
 
 ## Conclusion
 
-The **vps-setup** repository is **SECURE FOR PRIVATE GITLAB COMMIT**. 
+The **vps-setup** repository is **SECURE FOR PRIVATE GITLAB COMMIT**.
 
 All scripts follow security best practices, credentials are environment-driven, documentation is sanitized, and comprehensive `.gitignore` rules prevent sensitive data leakage.
 
 ### Ready to Push ✅
+
 ```bash
 git add .
 git commit -m "feat: production-ready vps-setup repository (security audit passed)"
@@ -334,4 +367,3 @@ git status --ignored | grep -E "env|sql|dump|key"
 # Check git history for secrets
 git log -p | grep -i "password\|secret\|api" | head -20
 ```
-
