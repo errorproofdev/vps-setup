@@ -1,4 +1,13 @@
+<!-- markdownlint-disable MD022 MD031 MD032 MD046 -->
+
 # NextJS Migration & Deployment Guide
+
+> **Security note:**
+> Starting February 2026 all production Next.js apps are deployed using a
+> hardened, non-root model. Applications run under a dedicated `appuser`,
+> bind only to localhost ports (3000–3002), and are accessed by NGINX via
+> Unix sockets for defense-in-depth. The full secure deployment workflow is
+> documented in [`docs/SECURE-NON-ROOT-DEPLOYMENT.md`](SECURE-NON-ROOT-DEPLOYMENT.md).
 
 This document describes the automated NextJS deployment functions in `scripts/services.sh` for migrating NextJS applications from EC2 to the VPS.
 

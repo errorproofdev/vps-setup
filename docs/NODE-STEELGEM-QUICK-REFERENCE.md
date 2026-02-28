@@ -1,10 +1,17 @@
-# Node-Steelgem Quick Reference Card
+<!-- markdownlint-disable MD022 MD031 MD032 MD046 -->
+
+               # Node-Steelgem Quick Reference Card
 
 **Server**: node-steelgem | **OS**: Ubuntu 24.04 | **CPU**: 4 cores | **Role**: NextJS Hosting
 
 ---
 
 ## 🚀 Quick Commands
+
+> **Security context:** all Node.js processes run as the non-root user
+> `appuser`. They listen on localhost-only TCP ports; NGINX proxies external
+> traffic over Unix sockets. Consult
+> `docs/SECURE-NON-ROOT-DEPLOYMENT.md` for deployment and hardening steps.
 
 ### Check All Applications
 

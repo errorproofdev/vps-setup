@@ -1,4 +1,13 @@
+<!-- markdownlint-disable MD022 MD031 MD032 MD046 -->
+
 # VPS Configuration Script
+
+> ⚠️ **Important:** the canonical, up‑to‑date deployment scripts now live in the
+> `secured/` directory. All `scripts/*.sh` and other top‑level helpers are
+> legacy – they remain in the tree for historical reference but should not be
+> used for new deployments. See
+> `docs/SECURE-NON-ROOT-DEPLOYMENT.md` for the primary workflow and refer to
+> `secured/configure.sh` as the current installer.
 
 A comprehensive setup script for Ubuntu 24.04 VPS instances that configures core infrastructure services with **dynamic SSH support** for both local and remote execution.
 
@@ -17,7 +26,6 @@ A comprehensive setup script for Ubuntu 24.04 VPS instances that configures core
 ## Requirements
 
 - Ubuntu 24.04 LTS
-- Root/sudo access (for local execution)
 - Internet connection
 - SSH access to target servers (for remote execution)
 
@@ -37,7 +45,12 @@ sudo ./scripts/vps-setup.sh
 
 The easiest way - no sudo needed locally!
 
-```bash
+> 🔐 **Secure App Deployment**: All application processes are run as a
+> non-root `appuser`, listening on localhost-only TCP ports with NGINX
+> proxying through Unix sockets. See
+> [`docs/SECURE-NON-ROOT-DEPLOYMENT.md`](docs/SECURE-NON-ROOT-DEPLOYMENT.md)
+> for the 12-step guide and security rationale.
+
 # Using environment variables
 SSH_HOST="192.168.1.100" \
 SSH_USER="ubuntu" \
@@ -67,7 +80,7 @@ SSH_PORT="22" \
 SSH_HOST="sql-steelgem" ./scripts/vps-setup.sh
 ```
 
-### Method 2: Configuration File (.env)
+## Method 2: Configuration File (.env)
 
 ```bash
 # Copy the example configuration

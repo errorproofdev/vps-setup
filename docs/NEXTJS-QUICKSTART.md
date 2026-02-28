@@ -1,4 +1,12 @@
+<!-- markdownlint-disable MD022 MD031 MD032 MD046 -->
+
 # NextJS Migration Quick Start
+
+> **Security reminder:** all production Next.js deployments use a hardening
+> model with a dedicated non-root `appuser`, localhost-only TCP ports and
+> NGINX proxying via Unix sockets. See
+> [`docs/SECURE-NON-ROOT-DEPLOYMENT.md`](SECURE-NON-ROOT-DEPLOYMENT.md) for
+> full details.
 
 ## ✅ What's Been Integrated
 
@@ -297,7 +305,7 @@ free -m
    ```bash
    # Forge Recovery
    sudo ./scripts/services.sh nextjs-deploy forge_nextjs theforgerecovery.com 3001 forge-prod /home/ubuntu/current
-   
+
    # Detox Near Me
    sudo ./scripts/services.sh nextjs-deploy detoxnearme detoxnearme.com 3002 detox-prod /home/ubuntu/current
    ```
@@ -323,13 +331,13 @@ free -m
 
 ## 🎯 Key Features
 
-✅ **NVM Integration** - Each app uses its own Node version via .nvmrc  
-✅ **PM2 Fork Mode** - Single instance per app (not cluster)  
-✅ **Cloudflare SSL** - Origin certificates (valid 2023-2038)  
-✅ **NGINX Optimization** - 16,384 connections, gzip level 6, Cloudflare IP forwarding  
-✅ **Automated Testing** - 5-test validation suite  
-✅ **Error Handling** - Comprehensive backup and rollback mechanisms  
-✅ **Production Ready** - Environment variable support, proper file permissions  
+✅ **NVM Integration** - Each app uses its own Node version via .nvmrc
+✅ **PM2 Fork Mode** - Single instance per app (not cluster)
+✅ **Cloudflare SSL** - Origin certificates (valid 2023-2038)
+✅ **NGINX Optimization** - 16,384 connections, gzip level 6, Cloudflare IP forwarding
+✅ **Automated Testing** - 5-test validation suite
+✅ **Error Handling** - Comprehensive backup and rollback mechanisms
+✅ **Production Ready** - Environment variable support, proper file permissions
 
 ---
 

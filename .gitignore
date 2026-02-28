@@ -14,8 +14,10 @@
 *.pid
 *.pid.lock
 *.tmp
+*.tar*
 
 # Environment and secret files
+vps_config.env
 .env
 .env.*
 *.key

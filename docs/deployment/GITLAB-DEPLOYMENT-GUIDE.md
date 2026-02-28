@@ -303,13 +303,15 @@ EOF
 - 📋 **IMPLEMENTATION-COMPLETE.md** - Feature checklist
 - 🔐 **SECURITY-AUDIT-FINAL.md** - Security review
 - 📚 **docs/NEXTJS-DEPLOYMENT.md** - Next.js deployment
-- 📚 **docs/SERVER-CONTEXT.md** - Server architecture
 
 ### Service-Specific
 
-- 🐘 **docs/BASTION-SETUP.md** - Bastion host setup
 - 📊 **POSTGRESQL-SETUP-CHECKLIST.sh** - PostgreSQL guide
 - 🚀 **conf/detoxnearme-strapi/edge-pm2.md** - Strapi deployment
+
+> ⚠️ *Previous bastion documentation and scripts have been archived.*
+> See `archived/deploy-bastion.sh` if you need the older flow, but current
+> deployments use the secure non-root model documented elsewhere.
 
 ---
 
@@ -493,8 +495,9 @@ vps-setup/
 │   ├── deploy.sh              # Deployment orchestrator
 │   ├── services.sh            # Individual service installers
 │   ├── backup-dotfiles.sh     # Backup utilities
-│   ├── deploy-bastion.sh      # Bastion host deployment
 │   └── NEXTJS-FUNCTIONS.sh    # Next.js specific functions
+
+# (The old `deploy-bastion.sh` moved to `archived/deploy-bastion.sh`)
 ├── conf/
 │   ├── www.theedgetreatment.com/
 │   │   ├── nginx/             # NGINX configurations
@@ -502,9 +505,7 @@ vps-setup/
 │   └── detoxnearme-strapi/    # Strapi-specific config
 ├── docs/
 │   ├── NEXTJS-DEPLOYMENT.md   # Next.js guide
-│   ├── BASTION-SETUP.md       # Bastion guide
-│   ├── MIGRATION-CHECKLIST.md # Migration steps
-│   └── SERVER-CONTEXT.md      # Architecture
+│   ├── MIGRATION-CHECKLIST.md # Migration steps (archived)
 ├── README.md                  # Main documentation
 ├── QUICK-START.md             # Fast start guide
 └── .gitignore                 # Excludes sensitive files
