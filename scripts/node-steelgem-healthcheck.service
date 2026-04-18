@@ -1,0 +1,8 @@
+[Unit]
+Description=Node Steelgem healthcheck
+After=network-online.target pm2-appuser.service nginx.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/node-steelgem-healthcheck.sh

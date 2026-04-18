@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Node Steelgem healthcheck every 2 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=2min
+Unit=node-steelgem-healthcheck.service
+
+[Install]
+WantedBy=timers.target
