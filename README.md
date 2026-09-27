@@ -456,6 +456,20 @@ ufw allow 8080/tcp comment "Custom Application"
 ufw allow from 192.168.1.100 to any port 22
 ```
 
+## Copilot Starter Repos
+
+This repository also documents how to set up four personal project-starter repositories
+(`starter-nextjs`, `starter-node`, `start-python`, `starter-swift`) that are pre-configured with
+GitHub Copilot agents, MCP config, and Podman Compose stacks.
+
+See **[docs/COPILOT-STARTER-REPOS.md](docs/COPILOT-STARTER-REPOS.md)** for:
+
+- Whether the Copilot coding agent can create repositories (it cannot, and why)
+- How to grant the agent write access to new private repos
+- OAuth App / GitHub App installation and permission settings
+- Step-by-step guide to creating each starter repo manually
+- Exact file skeletons and prompt templates for populating each repo via the agent
+
 ## License
 
 This script is provided as-is for educational and production use. Modify as needed for your specific requirements.
